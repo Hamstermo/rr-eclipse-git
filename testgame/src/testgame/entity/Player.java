@@ -2,7 +2,6 @@ package testgame.entity;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Canvas;
 
 import testgame.Game;
 
@@ -12,8 +11,8 @@ public class Player extends Entity {
 	private Game game;
 	
 	private final float SPEED = 0.2f;
-	private final int PLAYER_WIDTH = 32;
-	private final int PLAYER_HEIGHT = 32;
+	private final int WIDTH = 32;
+	private final int HEIGHT = 32;
 
 	public Player(Game game, double x, double y) {
 		super(x, y);
@@ -22,34 +21,30 @@ public class Player extends Entity {
 	
 	@Override
 	public void tick() {
-		System.out.println("x: "+ Math.round(x));
-		System.out.println("y: "+ Math.round(y));
-		
-		int width = game.getCanvas().getWidth();
-		int height = game.getCanvas().getHeight();
+		int screenWidth = game.getCanvas().getWidth();
+		int screenHeight = game.getCanvas().getHeight();
 
-		if (up){
+		if (up) {
 			if (y > 0) {
-				y = y-SPEED;
+				y -= SPEED;
 			}
 		} 
 			
-		else if (down){
-			System.out.println("jngefjnegf");
-			if (y < height-PLAYER_HEIGHT) {
-				y = y+SPEED;
+		else if (down) {
+			if (y < screenHeight-HEIGHT) {
+				y += SPEED;
 			}
 		}
 		
 		if (right) {
-			if (x < width-PLAYER_WIDTH) {
-				x = x+SPEED;
+			if (x < screenWidth-WIDTH) {
+				x += SPEED;
 			}
 		}
 			
 		else if (left) {
 			if (x > 0) {
-				x = x-SPEED;
+				x -= SPEED;
 			}
 		}
 			
@@ -58,7 +53,7 @@ public class Player extends Entity {
 	@Override
 	public void render(Graphics g) {
 		g.setColor(Color.RED);
-		g.fillRect((int) x, (int) y, PLAYER_WIDTH, PLAYER_HEIGHT);
+		g.fillRect((int) x, (int) y, WIDTH, HEIGHT);
 	}
 	
 	public void setUp(boolean up) {
