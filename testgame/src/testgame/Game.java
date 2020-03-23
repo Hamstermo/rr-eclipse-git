@@ -114,5 +114,9 @@ public class Game implements Runnable, KeyListener {
 	public int getHeight() {
 		return HEIGHT;
 	}
+
+	public Canvas getCanvas(){
+		return canvas;
+	}
 	
 }
