@@ -28,6 +28,7 @@ public class Game implements Runnable, KeyListener {
 	public Game() {
 		frame = new JFrame();
 		frame.setSize(WIDTH, HEIGHT);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		
 		canvas = new Canvas();
