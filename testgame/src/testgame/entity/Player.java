@@ -6,6 +6,7 @@ import java.awt.Graphics;
 public class Player extends Entity {
 
 	private boolean up, down, left, right;
+	private final double speed = 0.1;
 
 	public Player(double x, double y) {
 		super(x, y);
@@ -14,14 +15,14 @@ public class Player extends Entity {
 	@Override
 	public void tick() {
 		if (up) 
-			y--;
+			y = y-speed;
 		else if (down)
-			y++;
+			y = y+speed;
 		
 		if (right)
-			x++;
+			x = x+speed;
 		else if (left)
-			x--;
+			x = x-speed;
 	}
 
 	@Override
