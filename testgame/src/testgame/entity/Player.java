@@ -18,6 +18,8 @@ public class Player extends Entity {
 	
 	@Override
 	public void tick() {
+		System.out.println(game.getWidth());
+
 		if (up) 
 			y = y-speed;
 		else if (down)

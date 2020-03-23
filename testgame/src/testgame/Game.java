@@ -14,8 +14,8 @@ import testgame.entity.Player;
 
 public class Game implements Runnable, KeyListener {
 
-	public final int WIDTH = 640;
-	public final int HEIGHT = 480;
+	private final int WIDTH = 640;
+	private final int HEIGHT = 480;
 	
 	private JFrame frame;
 	private Canvas canvas;
@@ -105,6 +105,14 @@ public class Game implements Runnable, KeyListener {
 			player.setLeft(false);
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT)
 			player.setRight(false);
+	}
+
+	public int getWidth() {
+		return WIDTH;
+	}
+
+	public int getHeight() {
+		return HEIGHT;
 	}
 	
 }
