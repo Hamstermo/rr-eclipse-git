@@ -7,6 +7,9 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
+import testgame.entity.Handler;
+import testgame.entity.Player;
+
 public class Game implements Runnable {
 
 	private final int WIDTH = 640;
@@ -14,6 +17,10 @@ public class Game implements Runnable {
 	
 	private JFrame frame;
 	private Canvas canvas;
+	
+	private Thread thread;
+	
+	private Handler handler;
 	
 	public Game() {
 		frame = new JFrame();
@@ -23,11 +30,15 @@ public class Game implements Runnable {
 		canvas = new Canvas();
 		frame.add(canvas);
 		
-		new Thread(this).start();
+		handler = new Handler();
+		handler.addEntity(new Player(50, 50));
+		
+		thread = new Thread(this);
+		thread.start();
 	}
 	
 	private void tick() {
-		
+		handler.tick();
 	}
 	
 	private void render() {
@@ -38,8 +49,10 @@ public class Game implements Runnable {
 		}
 		Graphics g = bs.getDrawGraphics();
 		
-		g.setColor(Color.BLUE);
+		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
+		
+		handler.render(g);
 		
 		g.dispose();
 		bs.show();
