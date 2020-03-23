@@ -29,6 +29,7 @@ public class Player extends Entity {
 	public void tick() {
 		System.out.println("x: "+ Math.round(x));
 		System.out.println("y: "+ Math.round(y));
+		System.out.println(WIDTH);
 
 		if (up){
 			if (y>=0){
@@ -37,6 +38,7 @@ public class Player extends Entity {
 		} 
 			
 		else if (down){
+			System.out.println("jngefjnegf");
 			if (y<=(HEIGHT-playerHeight)){
 				y = y+speed;
 			}
