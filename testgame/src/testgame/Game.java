@@ -3,7 +3,7 @@ package testgame;
 public class Game {
 
 	public static void main(String[] args) {
-		System.out.println("hello mr hamlett");
+		System.out.println("hello");
 	}
 	
 }
