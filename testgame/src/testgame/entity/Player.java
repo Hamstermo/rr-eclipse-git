@@ -10,49 +10,46 @@ public class Player extends Entity {
 
 	private boolean up, down, left, right;
 	private Game game;
-	private Canvas canvas;
-	private final double speed = 0.2;
-	private final int HEIGHT;
-	private final int WIDTH;
-	private final int playerWidth = 32;
-	private final int playerHeight = 32;
+	
+	private final float SPEED = 0.2f;
+	private final int PLAYER_WIDTH = 32;
+	private final int PLAYER_HEIGHT = 32;
 
 	public Player(Game game, double x, double y) {
 		super(x, y);
 		this.game = game;
-		canvas = game.getCanvas();
-		HEIGHT = canvas.getHeight();
-		WIDTH = canvas.getWidth();
 	}
 	
 	@Override
 	public void tick() {
 		System.out.println("x: "+ Math.round(x));
 		System.out.println("y: "+ Math.round(y));
-		System.out.println(WIDTH);
+		
+		int width = game.getCanvas().getWidth();
+		int height = game.getCanvas().getHeight();
 
 		if (up){
-			if (y>=0){
-				y = y-speed;
+			if (y > 0) {
+				y = y-SPEED;
 			}
 		} 
 			
 		else if (down){
 			System.out.println("jngefjnegf");
-			if (y<=(HEIGHT-playerHeight)){
-				y = y+speed;
+			if (y < height-PLAYER_HEIGHT) {
+				y = y+SPEED;
 			}
 		}
 		
-		if (right){
-			if (x<(WIDTH-playerWidth)){
-				x = x+speed;
+		if (right) {
+			if (x < width-PLAYER_WIDTH) {
+				x = x+SPEED;
 			}
 		}
 			
-		else if (left){
-			if (x>0){
-				x = x-speed;
+		else if (left) {
+			if (x > 0) {
+				x = x-SPEED;
 			}
 		}
 			
@@ -61,7 +58,7 @@ public class Player extends Entity {
 	@Override
 	public void render(Graphics g) {
 		g.setColor(Color.RED);
-		g.fillRect((int) x, (int) y, playerWidth, playerHeight);
+		g.fillRect((int) x, (int) y, PLAYER_WIDTH, PLAYER_HEIGHT);
 	}
 	
 	public void setUp(boolean up) {
