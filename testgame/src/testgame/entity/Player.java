@@ -6,7 +6,7 @@ import java.awt.Graphics;
 public class Player extends Entity {
 
 	private boolean up, down, left, right;
-	private final double speed = 0.1;
+	private final double speed = 0.05;
 
 	public Player(double x, double y) {
 		super(x, y);
