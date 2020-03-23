@@ -3,13 +3,17 @@ package testgame.entity;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import testgame.Game;
+
 public class Player extends Entity {
 
 	private boolean up, down, left, right;
+	private Game game;
 	private final double speed = 0.1;
 
-	public Player(double x, double y) {
+	public Player(Game game, double x, double y) {
 		super(x, y);
+		this.game = game;
 	}
 	
 	@Override

@@ -14,8 +14,8 @@ import testgame.entity.Player;
 
 public class Game implements Runnable, KeyListener {
 
-	private final int WIDTH = 640;
-	private final int HEIGHT = 300;
+	public final int WIDTH = 640;
+	public final int HEIGHT = 480;
 	
 	private JFrame frame;
 	private Canvas canvas;
@@ -37,7 +37,7 @@ public class Game implements Runnable, KeyListener {
 		
 		handler = new Handler();
 		
-		player = new Player(100, 100);
+		player = new Player(this, 100, 100);
 		handler.addEntity(player);
 		
 		thread = new Thread(this);
