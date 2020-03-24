@@ -56,8 +56,7 @@ public class Game implements Runnable, KeyListener {
 		}
 		Graphics g = bs.getDrawGraphics();
 		
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, WIDTH, HEIGHT);
+		g.clearRect(0, 0, WIDTH, HEIGHT);
 		
 		handler.render(g);
 		
