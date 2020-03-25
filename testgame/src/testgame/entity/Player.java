@@ -73,9 +73,11 @@ public class Player extends Entity {
 		if (inAir){
 			VEL = VEL + GRAVITY*dt;
 		}
-		if (!inAir){
+		System.out.println(VEL);
+		
+		if (!inAir && Math.abs(VEL) > 100){
 			System.out.println(VEL);
-			VEL = (Math.sqrt(VEL*VEL))*0.8;
+			VEL = Math.abs(VEL)*0.8;
 		}
 
 		double newY = screenHeight-calcnewY;
