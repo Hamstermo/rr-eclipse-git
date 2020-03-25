@@ -22,11 +22,12 @@ public class Player extends Entity {
 	private double GRAVITY = -400;
 	private boolean inAir;
 
-	private BufferedImage img;
+	private BufferedImage image;
 
 	public Player(Game game, double x, double y) {
 		super(x, y);
 		this.game = game;
+		image = ImageLoader.loadImage("/img1.png");
 	}
 	
 	@Override
@@ -98,9 +99,7 @@ public class Player extends Entity {
 	@Override
 	public void render(Graphics g) {
 		g.setColor(Color.RED);
-		//g.fillRect((int) x, (int) y, playerWIDTH, playerHeight);
-		img = ImageLoader.loadImage("/textures/img1.png");
-		g.drawImage(img, x, y, null);
+		g.drawImage(image, (int) x, (int) y, null);
 	}
 	
 	public void setUp(boolean up) {
