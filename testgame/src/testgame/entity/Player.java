@@ -7,12 +7,17 @@ import testgame.Game;
 
 public class Player extends Entity {
 
-	private boolean up, down, left, right;
+	private boolean up, down, left, right, space;
 	private Game game;
 	
-	private final float SPEED = 0.2f;
-	private final int WIDTH = 32;
-	private final int HEIGHT = 32;
+	private final float SPEED = 5f;
+	private final int playerWIDTH = 32;
+	private final int playerHeight = 32;
+
+	private final double dt = 0.017;
+	private double VEL = 0f;
+	private double GRAVITY = 400;
+	private boolean inAir;
 
 	public Player(Game game, double x, double y) {
 		super(x, y);
@@ -24,20 +29,36 @@ public class Player extends Entity {
 		int screenWidth = game.getCanvas().getWidth();
 		int screenHeight = game.getCanvas().getHeight();
 
-		if (up) {
-			if (y > 0) {
-				y -= SPEED;
+		//if (up) {
+			//if (y > 0) {
+				//y -= SPEED;
+			//}
+		//}
+
+		if (y<(screenHeight-playerHeight)) {
+			inAir = true;
+		}
+		else {
+			inAir = false;
+		}
+
+		if (space) {
+			if (y>0){
+				if (inAir==false){
+					VEL =  -400;
+					System.out.println(VEL);
+				}
 			}
-		} 
+		}
 			
 		else if (down) {
-			if (y < screenHeight-HEIGHT) {
+			if (y < screenHeight-playerHeight) {
 				y += SPEED;
 			}
 		}
 		
 		if (right) {
-			if (x < screenWidth-WIDTH) {
+			if (x < screenWidth-playerWIDTH) {
 				x += SPEED;
 			}
 		}
@@ -47,13 +68,25 @@ public class Player extends Entity {
 				x -= SPEED;
 			}
 		}
-			
+
+		double newY = y + VEL*dt;
+		if (inAir){
+			VEL = VEL + GRAVITY*dt;
+		}
+		if (newY >= 0) {
+			if (newY <= (screenHeight-playerHeight)){
+				y = newY;
+			}
+			else {
+				y = screenHeight-playerHeight;
+			}
+		}
 	}
 
 	@Override
 	public void render(Graphics g) {
 		g.setColor(Color.RED);
-		g.fillRect((int) x, (int) y, WIDTH, HEIGHT);
+		g.fillRect((int) x, (int) y, playerWIDTH, playerHeight);
 	}
 	
 	public void setUp(boolean up) {
@@ -70,6 +103,10 @@ public class Player extends Entity {
 
 	public void setRight(boolean right) {
 		this.right = right;
+	}
+
+	public void setSpace(boolean space) {
+		this.space = space;
 	}
 	
 }

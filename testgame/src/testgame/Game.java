@@ -114,6 +114,8 @@ public class Game implements Runnable, KeyListener {
 			player.setLeft(true);
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT)
 			player.setRight(true);
+		if (e.getKeyCode() == KeyEvent.VK_SPACE)
+			player.setSpace(true);
 	}
 
 	@Override
@@ -126,6 +128,8 @@ public class Game implements Runnable, KeyListener {
 			player.setLeft(false);
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT)
 			player.setRight(false);
+		if (e.getKeyCode() == KeyEvent.VK_SPACE)
+			player.setSpace(false);
 	}
 
 	public int getWidth() {
