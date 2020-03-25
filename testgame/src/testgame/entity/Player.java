@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import testgame.Game;
+import testgame.ImageLoader;
+
+import java.awt.image.BufferedImage;
 
 public class Player extends Entity {
 
@@ -18,6 +21,8 @@ public class Player extends Entity {
 	private double VEL = 0f;
 	private double GRAVITY = -400;
 	private boolean inAir;
+
+	private BufferedImage img;
 
 	public Player(Game game, double x, double y) {
 		super(x, y);
@@ -50,11 +55,11 @@ public class Player extends Entity {
 			}
 		}
 			
-		else if (down) {
-			if (y < screenHeight-playerHeight) {
-				y += SPEED;
-			}
-		}
+		//else if (down) {
+			//if (y < screenHeight-playerHeight) {
+				//y += SPEED;
+			//}
+		//}
 		
 		if (right) {
 			if (x < screenWidth-playerWIDTH) {
@@ -73,7 +78,6 @@ public class Player extends Entity {
 		if (inAir){
 			VEL = VEL + GRAVITY*dt;
 		}
-		System.out.println(VEL);
 		
 		if (!inAir && Math.abs(VEL) > 100){
 			System.out.println(VEL);
@@ -94,7 +98,9 @@ public class Player extends Entity {
 	@Override
 	public void render(Graphics g) {
 		g.setColor(Color.RED);
-		g.fillRect((int) x, (int) y, playerWIDTH, playerHeight);
+		//g.fillRect((int) x, (int) y, playerWIDTH, playerHeight);
+		img = ImageLoader.loadImage("/textures/img1.png");
+		g.drawImage(img, x, y, null);
 	}
 	
 	public void setUp(boolean up) {
