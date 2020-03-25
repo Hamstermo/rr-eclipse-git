@@ -16,7 +16,7 @@ public class Player extends Entity {
 
 	private final double dt = 0.017;
 	private double VEL = 0f;
-	private double GRAVITY = 400;
+	private double GRAVITY = -400;
 	private boolean inAir;
 
 	public Player(Game game, double x, double y) {
@@ -45,8 +45,7 @@ public class Player extends Entity {
 		if (space) {
 			if (y>0){
 				if (inAir==false){
-					VEL =  -400;
-					System.out.println(VEL);
+					VEL =  500;
 				}
 			}
 		}
@@ -69,10 +68,17 @@ public class Player extends Entity {
 			}
 		}
 
-		double newY = y + VEL*dt;
+		double calcY = (screenHeight-y);
+		double calcnewY = calcY + VEL*dt;
 		if (inAir){
 			VEL = VEL + GRAVITY*dt;
 		}
+		if (!inAir){
+			System.out.println(VEL);
+			VEL = (Math.sqrt(VEL*VEL))*0.8;
+		}
+
+		double newY = screenHeight-calcnewY;
 		if (newY >= 0) {
 			if (newY <= (screenHeight-playerHeight)){
 				y = newY;
